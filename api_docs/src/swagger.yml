@@ -1,5 +1,169 @@
 openapi: 3.0.0
 info:
-  title: Demo Carts
+  title: Demo Cart
   version: "1.0"
 
+###
+# PATH DEFINITIONS
+###
+
+paths:
+  /cart:
+    get:
+      description: Returns the user's shopping cart with added items.
+      tags:
+        - Cart
+      operationId: getCart
+      responses:
+        '200':
+          $ref: '#/components/responses/CartResponseSuccess'
+          
+  /cart/items:
+    post:
+      description: Add an item to the user's cart.
+      tags:
+        - Cart
+      operationId: addCartItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - productSku
+              properties:
+                productSku:
+                  type: string
+                quantity:
+                  type: integer
+      responses:
+        '200':
+          $ref: '#/components/responses/CartResponseSuccess'
+    delete:
+      description: Remove all items from the user's cart.
+      tags:
+        - Cart
+      operationId: emptyCart
+      responses:
+        '204':
+          description: Success Response
+
+  /cart/items/{itemId}:
+    post:
+      description: Update an item in the user's cart.
+      tags:
+        - Cart
+      operationId: updateCartItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - quantity
+              properties:
+                quantity:
+                  type: integer
+      responses:
+        '200':
+          $ref: '#/components/responses/CartResponseSuccess'
+    delete:
+      description: Remove an item from the user's cart.
+      tags:
+        - Cart
+      operationId: removeCartItem
+      responses:
+        '204':
+          description: Success Response
+
+  /products:
+    description: Represents available products.
+    get:
+      description: Returns a list of products.
+      tags:
+        - Products
+      operationId: getProducts
+      responses:
+        '200':
+          $ref: '#/components/responses/ProductListResponseSuccess'
+
+components:
+
+  ###
+  # OBJECT SCHEMAS
+  ###
+
+  schemas:
+    Product:
+      properties:
+        id:
+          type: integer
+        sku:
+          type: string
+        displayName:
+          type: string
+        unitCost:
+          type: number
+          format: float
+
+    Cart:
+      properties:
+        id:
+          type: integer
+        numItemsTotal:
+          type: integer
+        numItemsUnique:
+          type: integer
+        
+    CartItem:
+      properties:
+        id:
+          type: integer
+        productSku:
+          type: string
+        productDisplayName:
+          type: string
+        productUnitCost:
+          type: number
+          format: float
+        quantity:
+          type: integer
+    
+    CartWithItems:
+      properties:
+        id:
+          type: integer
+        numItemsTotal:
+          type: integer
+        numItemsUnique:
+          type: integer
+        items:
+          type: array
+          items: 
+            $ref: '#/components/schemas/CartItem'
+
+  ###
+  # RESPONSE SCHEMAS
+  ###
+
+  responses:
+    CartResponseSuccess:
+      description: Cart Success Response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/CartWithItems'
+    
+    ProductListResponseSuccess:
+      description: Product List Success Response
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/Product'
+  
