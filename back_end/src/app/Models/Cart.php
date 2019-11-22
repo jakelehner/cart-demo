@@ -10,6 +10,10 @@ class Cart extends Model
     protected $primaryKey = 'id';
     public $timestamps = true;
 
+    protected $with = [
+        'items',
+    ];
+    
     protected $dates = [];
 
     protected $fillable = [
