@@ -1,7 +1,16 @@
 <template>
-  <div class="product-list-item">
-    {{product.displayName}} - ${{product.unitCost}} <button :value="product.sku">Add to Cart</button>
-  </div>
+    <md-list-item>
+      <md-icon class="md-accent">whatshot</md-icon>
+
+        <div class="md-list-item-text">
+          <span>{{product.displayName}}</span>
+          <span>${{product.unitCost}}</span>
+        </div>
+
+        <md-button class="md-raised md-accent">
+          <md-icon>add_shopping_cart</md-icon> Add to Cart
+        </md-button>
+      </md-list-item>
 </template>
 
 <script>

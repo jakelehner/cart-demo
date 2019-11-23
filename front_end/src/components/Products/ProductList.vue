@@ -1,11 +1,10 @@
 <template>
   <div class="product-list">
-    <div v-bind:key="product.id" v-for="product in products">
-      <ProductListItem v-bind:product="product" />
-    </div>
-    <!-- <li v-for="product in products">
-      {{ product.sku }}
-    </li> -->
+    <md-list class="md-double-line">
+      <div v-bind:key="product.id" v-for="product in products">
+        <ProductListItem v-bind:product="product" />
+      </div>
+    </md-list>
   </div>
 </template>
 
@@ -35,5 +34,8 @@ export default {
 </script>
 
 <style scoped>
-
+  div.product-list {
+    margin: auto;
+    width: 500px;
+  }
 </style>
