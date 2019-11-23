@@ -13,3 +13,10 @@
 
 $router->get('/products', ['uses' => 'ProductController@getProducts', 'as' => 'getProducts']);
 
+$router->get('/cart', ['uses' => 'CartController@getUserCart', 'as' => 'getUserCart']);
+
+$router->post('/cart/items', ['uses' => 'CartController@addItemToCart', 'as' => 'addItemToCart']);
+$router->delete('/cart/items', ['uses' => 'CartController@emptyCart', 'as' => 'emptyCart']);
+
+$router->post('/cart/items/{itemId}', ['uses' => 'CartController@updateCartItem', 'as' => 'updateCartItem']);
+$router->delete('/cart/items/{itemId}', ['uses' => 'CartController@removeItemFromCart', 'as' => 'removeItemFromCart']);
