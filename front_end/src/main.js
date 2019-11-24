@@ -30,11 +30,25 @@ const store = new Vuex.Store({
       numItemsTotal: 0,
       numItemsUnique: 0,
       items: []
+    },
+    snackbar: {
+      visible: 'sklmalksd',
+      message: ''
     }
   },
   mutations: {
     updateCart (state, cart) {
       state.cart = cart
+    },
+    showSnackbar (state, message) {
+      state.snackbar.message = message
+      state.snackbar.visible = true
+    },
+    toggleSnackbarVisibility (state, value) {
+      if (value == false) {
+        state.snackbar.message = ''
+      }
+      state.snackbar.visible = value
     }
   },
   getters: {

@@ -1,16 +1,16 @@
 <template>
-    <md-list-item>
-      <md-icon class="md-accent">whatshot</md-icon>
+  <md-list-item>
+    <md-icon class="md-accent">whatshot</md-icon>
 
-        <div class="md-list-item-text">
-          <span>{{product.displayName}}</span>
-          <span>${{product.unitCost}}</span>
-        </div>
+    <div class="md-list-item-text">
+      <span>{{product.displayName}}</span>
+      <span>${{product.unitCost}}</span>
+    </div>
 
-        <md-button class="md-raised md-accent" @click="addItemToCart(product)">
-          <md-icon>add_shopping_cart</md-icon> Add to Cart
-        </md-button>
-      </md-list-item>
+    <md-button class="md-raised md-accent" @click="addItemToCart(product)">
+      <md-icon>add_shopping_cart</md-icon> Add to Cart
+    </md-button>
+  </md-list-item>
 </template>
 
 <script>
@@ -32,6 +32,7 @@ export default {
         })
         .then(response => {
           this.$store.commit('updateCart', response.data.data)
+          this.$store.commit('showSnackbar', 'Product added to cart!')
         })
         .catch(function (error) {
           console.log(error);

@@ -45,6 +45,7 @@ export default {
         .delete('http://localhost:8082/cart/items')
         .then(response => {
           this.$store.commit('updateCart', response.data.data)
+          this.$store.commit('showSnackbar', 'Cart emptied!')
         })
         .catch(function (error) {
           console.log(error);

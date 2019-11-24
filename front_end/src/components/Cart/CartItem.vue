@@ -48,6 +48,7 @@ export default {
         .delete('http://localhost:8082/cart/items/' + item.id)
         .then(response => {
           this.$store.commit('updateCart', response.data.data)
+          this.$store.commit('showSnackbar', 'Product removed from cart!')
         })
         .catch(function (error) {
           console.log(error);
@@ -61,6 +62,7 @@ export default {
         })
         .then(response => {
           this.$store.commit('updateCart', response.data.data)
+          this.$store.commit('showSnackbar', 'Quantity updated!')
         })
         .catch(function (error) {
           console.log(error);

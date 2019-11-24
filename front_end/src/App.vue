@@ -16,6 +16,10 @@
     </div>
     <div id="content">
       <router-view></router-view>
+      <md-snackbar md-position="center" :md-duration="3000" :md-active.sync="snackbarVisible">
+        <span>{{this.$store.state.snackbar.message}}</span>
+        <md-button class="md-primary" @click="snackbarVisible = false">Close</md-button>
+      </md-snackbar>
     </div>
   </div>
 </template>
@@ -28,11 +32,28 @@ export default {
   },
   data () {
     return {
-
+      snackbarVisible: false
     }
   },
   mounted () {
      this.getCart()
+  },
+  computed: {
+    stateSnackbarVisible () {
+      return this.$store.state.snackbar.visible
+    }
+  },
+  watch: {
+    stateSnackbarVisible: function (newval) {
+      if (newval == true) {
+        this.snackbarVisible = true
+      }
+    },
+    snackbarVisible: function (newval) {
+      if (newval == false) {
+        this.$store.commit('toggleSnackbarVisibility', false)
+      }
+    }
   },
   methods: {
     getCart: function () {
@@ -47,7 +68,7 @@ export default {
     },
     updateCart: function (cart) {
       this.$store.commit('updateCart', cart)
-    }
+    }    
   }
 }
 </script>
