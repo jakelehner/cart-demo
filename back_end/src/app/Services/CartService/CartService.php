@@ -102,7 +102,7 @@ class CartService
      */
     public function emptyCart($cart)
     {
-        $cart->items()->delete();
+        $cart->items()->detach();
         $cart->load('items');
         return $cart;
     }
