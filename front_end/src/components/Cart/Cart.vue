@@ -3,7 +3,11 @@
     <md-list class="md-double-line">
       <md-subheader>Cart</md-subheader>
       <div v-if="cartEmpty">
-        Your cart is empty
+        <md-empty-state
+          md-icon="shopping_cart"
+          md-label="Your cart is empty"
+          md-description="You know you wanna buy some stuff..."
+        />
       </div>
       <div v-else :key="item.id" v-for="item in cartItems">
         <CartItem :item="item" />
