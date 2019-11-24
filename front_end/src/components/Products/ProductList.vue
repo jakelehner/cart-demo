@@ -2,7 +2,10 @@
   <div class="product-list">
     <span class="md-title">Products</span>
     <md-list class="md-double-line">
-      <div :key="product.id" v-for="product in products">
+      <div v-if="loading" class="md-layout md-alignment-center-center">
+        <md-progress-spinner md-mode="indeterminate" class="md-primary"></md-progress-spinner>
+      </div>
+      <div v-else :key="product.id" v-for="product in products">
         <ProductListItem :product="product" />
       </div>
     </md-list>
@@ -21,18 +24,26 @@ export default {
   },
   data () {
     return {
+      loading: true,
       products: []
     };
   },
   mounted () {
-    this.axios
-      .get('http://localhost:8082/products')
-      .then(response => {
-        this.products = response.data.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
+    this.getProductList()
+  },
+  methods: {
+    getProductList: function () {
+      this.loading = true
+      this.axios
+        .get('http://localhost:8082/products')
+        .then(response => {
+          this.products = response.data.data
+          this.loading = false
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
   }
 }
 </script>
@@ -41,5 +52,8 @@ export default {
   div.product-list {
     margin: auto;
     width: 500px;
+  }
+  .md-progress-spinner {
+    margin: 24px;
   }
 </style>
