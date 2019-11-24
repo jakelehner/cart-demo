@@ -1,7 +1,7 @@
 <template>
   <div class="product-list">
+    <span class="md-title">Products</span>
     <md-list class="md-double-line">
-      <md-subheader>Products</md-subheader>
       <div :key="product.id" v-for="product in products">
         <ProductListItem :product="product" />
       </div>
