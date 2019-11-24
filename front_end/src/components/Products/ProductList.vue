@@ -2,8 +2,8 @@
   <div class="product-list">
     <md-list class="md-double-line">
       <md-subheader>Products</md-subheader>
-      <div v-bind:key="product.id" v-for="product in products">
-        <ProductListItem v-bind:product="product" />
+      <div :key="product.id" v-for="product in products">
+        <ProductListItem :product="product" />
       </div>
     </md-list>
   </div>

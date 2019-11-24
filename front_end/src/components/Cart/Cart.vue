@@ -2,8 +2,8 @@
   <div class="cart">
     <md-list class="md-double-line">
       <md-subheader>Cart</md-subheader>
-      <div v-bind:key="item.id" v-for="item in cartItems">
-        <CartItem v-bind:item="item" />
+      <div :key="item.id" v-for="item in cartItems">
+        <CartItem :item="item" />
       </div>
     </md-list>
   </div>
