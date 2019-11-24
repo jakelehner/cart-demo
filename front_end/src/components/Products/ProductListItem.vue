@@ -7,7 +7,7 @@
           <span>${{product.unitCost}}</span>
         </div>
 
-        <md-button class="md-raised md-accent">
+        <md-button class="md-raised md-accent" @click="addItemToCart(product)">
           <md-icon>add_shopping_cart</md-icon> Add to Cart
         </md-button>
       </md-list-item>
@@ -22,6 +22,21 @@ export default {
   },
   data: function() {
     return {};
+  },
+  methods: {
+    addItemToCart: function (product) {
+      this.axios
+        .post('http://localhost:8082/cart/items', {
+          sku: product.sku,
+          quantity: 1
+        })
+        .then(response => {
+          this.$store.commit('updateCart', response.data.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
   }
 }
 </script>
