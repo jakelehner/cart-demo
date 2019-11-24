@@ -7,8 +7,8 @@
           <span>{{item.sku}} - {{item.quantity}}</span>
         </div>
 
-        <md-button class="md-raised md-accent">
-          <md-icon>minus</md-icon> Remove
+        <md-button class="md-raised md-accent" @click="removeItemFromCart(item)">
+          <md-icon>remove_shopping_cart</md-icon> Remove
         </md-button>
       </md-list-item>
 </template>
@@ -22,6 +22,18 @@ export default {
   },
   data: function() {
     return {};
+  },
+  methods: {
+    removeItemFromCart: function (item) {
+      this.axios
+        .delete('http://localhost:8082/cart/items/' + item.id)
+        .then(response => {
+          this.$store.commit('updateCart', response.data.data)
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    }
   }
 }
 </script>
