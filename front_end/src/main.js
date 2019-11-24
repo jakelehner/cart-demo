@@ -25,7 +25,33 @@ const RouterConfig = {
 };
 const router = new VueRouter(RouterConfig);
 
+const store = new Vuex.Store({
+  state: {
+    cart: {
+      id: null,
+      userFingerprint: null,
+      numItemsTotal: 0,
+      numItemsUnique: 0,
+      items: []
+    }
+  },
+  mutations: {
+    updateCart (state, cart) {
+      state.cart = cart
+    }
+  },
+  getters: {
+    cart: state => {
+      return state.cart
+    },
+    cartItems: state => {
+      return state.cart.items
+    },
+  }
+})
+
 new Vue({
+  store,
   router: router,
   render: h => h(App),
 }).$mount('#app')

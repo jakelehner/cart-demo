@@ -2,10 +2,10 @@
   <div id="app">
     <div id="nav">
       <router-link :to="{ name: 'store' }">Store</router-link>
-      <router-link :to="{ name: 'cart' }">Cart ({{cart.numItemsUnique}})</router-link>
+      <router-link :to="{ name: 'cart' }">Cart ({{cartItemsUnique}})</router-link>
     </div>
     <div id="content">
-      <router-view :cartItems="cart.items"></router-view>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -18,17 +18,16 @@ export default {
   },
   data () {
     return {
-      cart: {
-        id: null,
-        userFingerprint: null,
-        numItemsTotal: 0,
-        numItemsUnique: 0,
-        items: []
-      },
+
     }
   },
   mounted () {
      this.getCart()
+  },
+  computed: {
+    cartItemsUnique () {
+      return this.$store.state.cart.numItemsUnique
+    }
   },
   methods: {
     getCart: function () {
@@ -42,7 +41,7 @@ export default {
         })
     },
     updateCart: function (cart) {
-      this.cart = cart
+      this.$store.commit('updateCart', cart)
     }
   }
 }

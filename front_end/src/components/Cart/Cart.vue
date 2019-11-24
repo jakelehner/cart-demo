@@ -17,7 +17,11 @@ export default {
   components: {
     CartItem
   },
-  props: ['cartItems']
+  computed: {
+    cartItems () {
+      return this.$store.state.cart.items
+    }
+  },
 }
 </script>
 
