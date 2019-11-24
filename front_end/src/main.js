@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import { MdButton, MdEmptyState, MdIcon, MdList, MdSubheader } from 'vue-material/dist/components'
+import VueMaterial from 'vue-material'
 import Routes from './router.js';
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
@@ -11,11 +11,7 @@ import 'vue-material/dist/theme/default.css'
 Vue.use(Vuex)
 Vue.use(VueRouter)
 Vue.use(VueAxios, axios)
-Vue.use(MdButton)
-Vue.use(MdEmptyState)
-Vue.use(MdIcon)
-Vue.use(MdList)
-Vue.use(MdSubheader)
+Vue.use(VueMaterial)
 
 Vue.config.productionTip = false
 
