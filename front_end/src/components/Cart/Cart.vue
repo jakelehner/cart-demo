@@ -2,7 +2,10 @@
   <div class="cart">
     <md-list class="md-double-line">
       <md-subheader>Cart</md-subheader>
-      <div :key="item.id" v-for="item in cartItems">
+      <div v-if="cartEmpty">
+        Your cart is empty
+      </div>
+      <div v-else :key="item.id" v-for="item in cartItems">
         <CartItem :item="item" />
       </div>
     </md-list>
@@ -20,6 +23,9 @@ export default {
   computed: {
     cartItems () {
       return this.$store.state.cart.items
+    },
+    cartEmpty () {
+      return this.$store.getters.cartItemsUniqueCount == 0;
     }
   },
 }

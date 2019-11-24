@@ -47,6 +47,9 @@ const store = new Vuex.Store({
     cartItems: state => {
       return state.cart.items
     },
+    cartItemsUniqueCount: state => {
+      return state.cart.numItemsUnique
+    }
   }
 })
 
