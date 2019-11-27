@@ -1,5 +1,9 @@
-import Cart from './components/Cart/Cart.vue'
-import ProductList from './components/Products/ProductList.vue'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Cart from '../components/Cart/Cart.vue'
+import ProductList from '../components/Products/ProductList.vue'
+
+Vue.use(VueRouter)
 
 const routes = [
     {
@@ -22,4 +26,11 @@ const routes = [
         props: true
     }
 ];
-export default routes;
+
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
+})
+
+export default router
