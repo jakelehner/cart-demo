@@ -45,7 +45,7 @@ export default {
   methods: {
     removeItemFromCart: function (item) {
       this.axios
-        .delete('http://localhost:8082/cart/items/' + item.id)
+        .delete(process.env.VUE_APP_API_BASE_URL + '/cart/items/' + item.id)
         .then(response => {
           this.$store.commit('updateCart', response.data.data)
           this.$store.commit('showSnackbar', 'Product removed from cart!')
@@ -57,7 +57,7 @@ export default {
     updateItemQuantity: function (item, newQuantity) {
       if (item.quantity != newQuantity) {
         this.axios
-        .post('http://localhost:8082/cart/items/' + item.id, {
+        .post(process.env.VUE_APP_API_BASE_URL + '/cart/items/' + item.id, {
           quantity: newQuantity
         })
         .then(response => {

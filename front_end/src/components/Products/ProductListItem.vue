@@ -26,7 +26,7 @@ export default {
   methods: {
     addItemToCart: function (product) {
       this.axios
-        .post('http://localhost:8082/cart/items', {
+        .post(process.env.VUE_APP_API_BASE_URL + '/cart/items', {
           sku: product.sku,
           quantity: 1
         })

@@ -42,7 +42,7 @@ export default {
   methods: {
     emptyCart: function () {
       this.axios
-        .delete('http://localhost:8082/cart/items')
+        .delete(process.env.VUE_APP_API_BASE_URL + '/cart/items')
         .then(response => {
           this.$store.commit('updateCart', response.data.data)
           this.$store.commit('showSnackbar', 'Cart emptied!')

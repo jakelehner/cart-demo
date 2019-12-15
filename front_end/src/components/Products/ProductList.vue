@@ -35,7 +35,7 @@ export default {
     getProductList: function () {
       this.loading = true
       this.axios
-        .get('http://localhost:8082/products')
+        .get(process.env.VUE_APP_API_BASE_URL + '/products')
         .then(response => {
           this.products = response.data.data
           this.loading = false

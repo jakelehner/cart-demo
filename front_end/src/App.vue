@@ -58,7 +58,7 @@ export default {
   methods: {
     getCart: function () {
       this.axios
-        .get('http://localhost:8082/cart')
+        .get(process.env.VUE_APP_API_BASE_URL + '/cart')
         .then(response => {
           this.updateCart(response.data.data)
         })
