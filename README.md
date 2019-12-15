@@ -20,7 +20,7 @@ Once the containers are running, execute the following to initialize the back-en
 > Note: This command will need to be run any time the services are stopped and restarted as this demo does not use persistent storage.
 
 ```
-docker-compose exec php bash init.sh
+docker-compose exec api-php bash init.sh
 ```
 
 ## Accessing the Demo
